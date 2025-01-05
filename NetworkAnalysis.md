@@ -77,7 +77,9 @@ the GitHub repository or contact the maintainer.
 - [References](#references)
 
 
-## Ecosystems
+## Ecosystems and Data
+
+### Ecosystems
 
 The starting point for analyzing networks in R is to familiarize with the main
 package 'families' or ecosystems. Using them, users can access functions to
@@ -160,7 +162,7 @@ create, import/export, edit, and otherwise operate on relational data.
     continually being to the documentation to provide user reference and support
     user experience.
 
-### Network construction
+### Relational data management and conversion tools
 
 Although the 'core' packages for network analysis in R can create a wide range
 of networks from different types of inputs, there are also specialized packages
@@ -209,6 +211,13 @@ while computing inside verbs.
 
 - `r pkg("backbone")` enables the extraction of the sparse and unweighted
 subgraph of a network called 'backbone'.
+
+## Exploratory Data Analysis
+
+`r pkg ("igraph")`, `r pkg ("sna")`, and `r pkg("manynet")` offer functions for
+a similar set of network-analytic and visualisation operations, whereas `r pkg ("tidygraph")` is
+more limited. However, some algorithms differ from each other and from those
+are some specialized packages for their implementation, speed, or defaults.
 
 ### Visualization
 
@@ -302,14 +311,6 @@ between the `r bioc("graph")` package and the _graphviz_ library.
 can be used, for example, in visualizing multipartite and other complex
 networks.
 
-
-## Network analysis
-
-`r pkg ("igraph")`, `r pkg ("sna")`, and `r pkg("manynet")` offer functions for
-a similar set of network-analytic operations, whereas `r pkg ("tidygraph")` is
-more limited. However, some algorithms differ from each other and from those
-are some specialized packages for their implementation, speed, or defaults.
-
 ### Centrality
 
 Both main ecosystems can compute betweenness, eigenvalue, power, and closeness
@@ -333,6 +334,8 @@ _neighborhood-inclusion_ or _positional dominance_ and based on probabilistic
 methods like computing expected node ranks and relative rank probabilities (see
 also Schoch 2018).
 
+## Group detection
+
 ### Community detection
 
 - `r pkg("igraph")` is the package of choice for the implementation of most
@@ -353,15 +356,9 @@ well as generate a mesoscopic matrix (`linkcomm::getCommunityMatrix`). Moreover,
 it can produce membership for hierarchical communities
 (`linkcomm::getNestedHierarchies`).
 
-### Model-based clustering 
+### Blockmodeling
 
-Model-based clustering is a probabilistic approach to grouping nodes in a
-network based on their connectivity patterns, assuming that the data arise from
-a (mixture of) latent distribution(s). These methods are particularly effective
-for identifying undetected structures and capturing uncertainty in network
-partitions.
-
-#### Generalized blockmodeling (structural and/or regular equivalence)
+#### Generalized (structural and/or regular equivalence)
 
 - `r pkg("sna")` implements a simple version of structural-equivalence
 blockmodel (`sna::blockmodel`). It can also generate networks with a given
@@ -401,7 +398,7 @@ networks based on objects from `r pkg("igraph")`
 - `r pkg("oaqc")` enables efficient computation of the orbit-aware quad census
 from Ortmann and Brandes (2017, `r doi("10.1007/s41109-017-0027-2")`).
 
-#### Stochastic blockmodeling (SBM)
+#### Stochastic (SBM)
 
 - `r pkg("igraph")` cannot run SBMs, but it can generate a random graph
 according to a specified SBM (`igraph::sample_sbm`) or an arbitrary hierarchical
@@ -448,7 +445,7 @@ where the different matrices each involve nodes that can be partitioned into
 a-priori defined _functional groups_ as proposed by Bar-Hen, Barbillon, and 
 Donnet (2018).
 
-#### Others
+### Others
 
 - `r pkg("clustNet")` allows to cluster units in a network using a Bayesian
 mixture model that can account for node and edge covariates.
@@ -487,7 +484,7 @@ conditions.
 
 ### Cross-sectional networks
 
-- `r pkg("ergm")` provides functions to fit, simulate and analyze
+- `r pkg("ergm")` from the `r pkg("statnet")` ecosystem provides functions to fit, simulate and analyze
 exponential-family random graph models (ERGM). Depending on specific needs,
 several specialized extensions are available.
 
@@ -558,24 +555,6 @@ described in Neal (2022: `r doi("10.31219/osf.io/ectms")`).
 The following packages focus on modeling and simulation of networks that evolve
 over time and network processes that occur over time.
 
-### Dynamics and diffusion
-
-- `r pkg("tsna")` is used to analyze them.
-
-- `r pkg("EpiModel")` allows to simulate mathematical models of infectious
-disease dynamics.
-
-- `r pkg("manynet")` can manipulate, visualize, and analyze longitudinal and
-network event data, including running contagion/diffusion processes and
-compartmental models.
-
-- `r pkg("netdiffuseR")` was developed as part of Valente et al. (2015:
-`r doi("10.1016/j.socscimed.2015.10.001")`). The package is for empirical
-statistical analysis, visualization and simulation of network diffusion and
-contagion processes. It implements algorithms for calculating network diffusion
-statistics such as transmission rate, hazard rates, exposure models, network
-threshold levels, infectiousness (contagion), and susceptibility.
-
 #### Relational events
 
 Relational event data contains information about exact times during which the
@@ -616,6 +595,24 @@ Models (SAOMs) for panel network data.
 convert static data into their 'dynamic' form contextually inferring
 informative, dynamic, multi-directional networks with clusterable structures.
 
+
+#### Diffusion on networks
+
+- `r pkg("tsna")` is used to analyze them.
+
+- `r pkg("EpiModel")` allows to simulate mathematical models of infectious
+disease dynamics.
+
+- `r pkg("manynet")` can manipulate, visualize, and analyze longitudinal and
+network event data, including running contagion/diffusion processes and
+compartmental models.
+
+- `r pkg("netdiffuseR")` was developed as part of Valente et al. (2015:
+`r doi("10.1016/j.socscimed.2015.10.001")`). The package is for empirical
+statistical analysis, visualization and simulation of network diffusion and
+contagion processes. It implements algorithms for calculating network diffusion
+statistics such as transmission rate, hazard rates, exposure models, network
+threshold levels, infectiousness (contagion), and susceptibility.
 
 ## Field packages
 
