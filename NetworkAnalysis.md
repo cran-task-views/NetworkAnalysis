@@ -184,6 +184,9 @@ from [_EgoNet_](https://github.cm/egonet/egonet), [_EgoWeb
 [_openeddi_](https://github.cm/jfaganUK/openeddi). It includes a Shiny app and
 procedures for creating and visualizing clustered graphs.
 
+- `r pkg("networkDynamic")` from `r pkg("statnet")` allows the management of
+dynamic networks.
+
 - `r pkg("ionet")` creates network starting by turning input-output tables into
 weighted adjacency matrices.
 
@@ -225,15 +228,15 @@ JavaScript network, tree, dendrogram, or Sankey plots.
 - `r pkg("bipartiteD3")` uses the _D3_ and _viz.js_ libraries for plotting
 networks produced with the `r pkg("bipartite")` package.
 
+- `r pkg("ndtv")` renders network objects from the package
+`r pkg("networkDynamic")` as videos or interactive animations.
+
 #### Static visualization
 
 - `r pkg("diagram")` was born as a companion to the book _A Practical Guide to
 Ecological Modelling_ by K. Soetaert and P.M.J. Herman. But it can visualize as
 a flow diagram, a web or grid any network given in the form of a transition
 matrix. 
-
-- `r pkg("ndtv")` renders network objects from the package
-`r pkg("networkDynamic")` as videos or interactive animations.
 
 - `r pkg("neatmaps")` tries to simplify the exploratory step of data analysis by
 providing function to easily produce hierarchical clustering
@@ -556,9 +559,6 @@ The following packages focus on modeling and simulation of networks that evolve
 over time and network processes that occur over time.
 
 ### Dynamics and diffusion
-
-- `r pkg("networkDynamic")` from `r pkg("statnet")` allows the management of
-dynamic networks.
 
 - `r pkg("tsna")` is used to analyze them.
 
