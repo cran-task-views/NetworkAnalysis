@@ -54,10 +54,12 @@ the GitHub repository or contact the maintainer.
 
 ## Table of contents
 
+
 - [Ecosystems and Data](#ecosystems-and-data)
    * [Ecosystems](#ecosystems)
    * [Relational data management and conversion tools](#relational-data-management-and-conversion-tools)
 - [Exploratory Data Analysis](#exploratory-data-analysis)
+   * [General](#general)
    * [Visualization](#visualization)
       + [Interactive visualization](#interactive-visualization)
       + [Static visualization](#static-visualization)
@@ -120,17 +122,23 @@ create, import/export, edit, and otherwise operate on relational data.
     According to the latest review this is the largest network-analysis
     ecosystem in R by number of extensions (see Kanevsky 2016).
 
-- `r pkg("statnet", priority = "core")`, sometimes used only as `r pkg("sna",
-  priority = "core")` and/or `r pkg("network", priority = "core")` is a more
-  organic family of packages for statistical network analysis built upon common
-  data representations and design choices. But there are also 'add-ons',
-  although not as many as in the previous ecosystem. 
+- [Statnet](http://statnet.org/) is a suite of R packages for analysis
+  and statistical modeling of networks that forms a core of an
+  ecosystem of packages for statistical network analysis built upon
+  common data representations (particularly the `r pkg("network",
+  priority = "core")` package) and design choices. Meta-package `r
+  pkg("statnet", priority = "core")` makes it easy to install the core
+  packages in the suite.
 
-  - *Approach*: The approach in this group of packages is more disaggregated and
-    involves a number of different packages for different purposes. Not least,
-    they provide support to the packages in the `r pkg("ergm")` family.
+  - *Approach*: The approach in this group of packages is more
+    disaggregated and involves a number of different packages for
+    different purposes. In particular, whereas `r pkg("igraph")`
+    implements both the data structure and network analysis methods,
+    `r pkg("network")` does not implement network analysis methods but
+    relies on other packages, such as `r pkg("sna", priority =
+    "core")` and the `r pkg("ergm")` family.
  
-  - *Flexibility*: The packages in `r pkg("statnet")` can be used to analyze
+  - *Flexibility*: The packages in the Statnet suite can be used to analyze
   (social) network data using both direct assignment and a 'piped' approach. 
  
   - *Comprehensiveness*: This ecosystem's biggest advantage is that it allows
@@ -179,8 +187,12 @@ of networks from different types of inputs, there are also specialized packages
 for constructing more specialized formats or for converting or coercing between
 different formats.
 
+- Core packages `r pkg("network")` and `r pkg("igraph")` provide basic
+  data structures and tools for creating, importing, modifying, and
+  exporting their respective representations of relational data.
+
 - `r pkg("intergraph")` is not a network analysis package _per se_. Rather it
-allows to easily convert objects produced by `r pkg("statnet")` packages into
+allows to easily convert objects produced by Statnet packages into
 `r pkg("igraph")` objects (or a data frame) and vice versa. Thus, it helps
 leveraging multiple packages' functionalities and ensuring compatibility between
 several users' workflows too many additional functionalities.
@@ -190,14 +202,14 @@ synchronous and asynchronous (probabilistic) Boolean networks as well as simpler
 Boolean networks. All the main functions are described in a handy
 [vignette](https://cran.r-project.org/web/packages/BoolNet/vignettes/BoolNet_package_vignette.pdf).
 
-- `r pkg("egor")` allows to create ego-centric networks starting from exports
+- `r pkg("egor")` provides tools for managing ego-centric networks, including importing from exports
 from [_EgoNet_](https://github.cm/egonet/egonet), [_EgoWeb
 2.0_](https://www.qualintitative.com/egoweb/) and
 [_openeddi_](https://github.cm/jfaganUK/openeddi). It includes a Shiny app and
 procedures for creating and visualizing clustered graphs.
 
-- `r pkg("networkDynamic")` from `r pkg("statnet")` allows the management of
-dynamic networks.
+- `r pkg("networkDynamic")` from Statnet facilitates representation
+  and manipulation of dynamic networks.
 
 - `r pkg("ionet")` creates network starting by turning input-output tables into
 weighted adjacency matrices.
@@ -219,15 +231,21 @@ operations, `r pkg ("tidygraph")`'s added value lies mainly in the possibility
 of accessing directly either the node data, the edge data or the graph itself
 while computing inside verbs.
 
-- `r pkg("backbone")` enables the extraction of the sparse and unweighted
-subgraph of a network called 'backbone'.
+- `r pkg("backbone")` implements extraction of a sparse and unweighted
+subgraph of a network called a *backbone*.
 
 ## Exploratory Data Analysis
 
 `r pkg ("igraph")`, `r pkg ("sna")`, and `r pkg("manynet")` offer functions for
-a similar set of network-analytic and visualisation operations, whereas `r pkg ("tidygraph")` is
+a similar set of network-analytic and visualization operations, whereas `r pkg ("tidygraph")` is
 more limited. However, some algorithms differ from each other and from those
 are some specialized packages for their implementation, speed, or defaults.
+
+### General
+
+- `r pkg("tsna")` implements a number of methods for exploratory
+  analysis and summaries of temporal networks in the `r pkg("networkDynamic")`
+  representation.
 
 ### Visualization
 
@@ -498,8 +516,7 @@ several specialized extensions are available.
   | Multilayer networks and samples of networks | `r pkg("ergm.multi")` |
   | Rank-order networks                         | `r pkg("ergm.rank")`  |
   | Modeling ERGM-generating processes          | `r pkg("ergmgp")`     |
-  | Fit ERGM to small networks                  | `r pkg("ergmgp")`     |
-  | Small hierarchical ERGMs                    | `r pkg("lightergm")`  |
+  | Fit ERGM to small networks                  | `r pkg("ergmito")`    |
   | Large hierarchical ERGMs                    | `r pkg("bigergm")`    |
 
 - `r pkg("amen")` offers additive and multiplicative effect (AME) models with
@@ -525,10 +542,10 @@ distribution conditional on edges already added, with order unknown.
 - `r pkg("MoNAn")` implements the method to analyze the structure of weighted
 mobility networks or distribution networks outlined.
 
-- `r pkg("ERPM")` extends exponential random graph models (ERGMs) to explain
-cross-sectional or longitudinal observed partitions, i.e. sets of
-non-overlapping groups, such as face-to-face interactions, animal herds, or
-political coalitions, through group formation processes based on individual
+- `r pkg("ERPM")` implements an exponential-family model for
+cross-sectional or longitudinal partitions, i.e. non-overlapping sets
+of groups, such as sports teams, animal herds, or political
+coalitions, through group formation processes based on individual
 attributes, relations between individuals, and size-related factors.
 
 ### Multimodal and multilevel networks
@@ -549,8 +566,11 @@ models j2, p2 (also multilevel) and b2 model.
 - `r pkg("tnet")` includes functions for analyzing two-mode, weighted, and
 longitudinal networks.
 
-- `r pkg("incidentally")` implements methods to generate incidence matrices as
-described in Neal (2022).
+- `r pkg("incidentally")` implements methods to generate two-mode
+  networks consistent with a given one-mode network.
+
+- `r pkg("ergm.multi")` is a set of extensions to `r pkg("ergm")` for
+  modeling multilayer and multimode networks, as well as samples of networks.
 
 ### Dynamic networks
 
@@ -598,8 +618,6 @@ informative, dynamic, multi-directional networks with clusterable structures.
 
 
 #### Diffusion on networks
-
-- `r pkg("tsna")` is used to analyze them.
 
 - `r pkg("EpiModel")` allows to simulate mathematical models of infectious
 disease dynamics.
