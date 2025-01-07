@@ -19,9 +19,8 @@ sections based on their scope and focus:
 basic network-analytic operations such as creating, manipulating, and describing
 relational data. Here we also list choices of graphical packages for
 visualizing or drawing networks. For those new to network analysis in R, we
-recommend starting with the [`igraph`
-introduction](https://igraph.org/c/doc/igraph-Introduction.html) or the
-[`statnet` tutorial](https://statnet.org/workshop-intro-sna-tools/).
+recommend starting with the `igraph` introduction (Csárdi and Nepus 2006) or the
+`statnet` tutorial (Bojanowski and Jasny 2024).
 
 2. Subsequently, packages and functions for advanced network-analytical tasks
 are presented. We currently structure these into three subsections: (1)
@@ -55,29 +54,42 @@ the GitHub repository or contact the maintainer.
 
 ## Table of contents
 
-- [Ecosystems](#ecosystems)
-   - [Network construction](#network-construction)
-   - [Visualization](#visualization)
-- [Network analysis](#network-analysis)
-   - [Centrality](#centrality)
-   - [Community detection](#community-detection)
-   - [Model-based clustering ](#model-based-clustering)
+- [Ecosystems and Data](#ecosystems-and-data)
+   * [Ecosystems](#ecosystems)
+   * [Relational data management and conversion tools](#relational-data-management-and-conversion-tools)
+- [Exploratory Data Analysis](#exploratory-data-analysis)
+   * [Visualization](#visualization)
+      + [Interactive visualization](#interactive-visualization)
+      + [Static visualization](#static-visualization)
+      + [Extensions for `ggplot2`](#extensions-for-ggplot2)
+      + [Layouts](#layouts)
+   * [Centrality](#centrality)
+- [Group detection](#group-detection)
+   * [Community detection](#community-detection)
+   * [Blockmodeling](#blockmodeling)
+      + [Generalized (structural and/or regular equivalence)](#generalized-structural-andor-regular-equivalence)
+      + [Stochastic (SBM)](#stochastic-sbm)
+   * [Others](#others)
 - [Statistical modeling](#statistical-modeling)
-   - [Cross-sectional networks](#cross-sectional-networks)
-   - [Multimodal and multilevel networks](#multimodal-and-multilevel-networks)
-   - [Dynamic networks](#dynamic-networks)
+   * [Cross-sectional networks](#cross-sectional-networks)
+   * [Multimodal and multilevel networks](#multimodal-and-multilevel-networks)
+   * [Dynamic networks](#dynamic-networks)
+      + [Relational events](#relational-events)
+      + [Discrete observations](#discrete-observations)
+      + [Diffusion on networks](#diffusion-on-networks)
 - [Field packages](#field-packages)
-   - [Ecological networks](#ecological-networks)
-   - [Bibliometric networks](#bibliometric-networks)
-   - [Networks in the natural and life sciences](#networks-in-the-natural-and-life-sciences)
-   - [Neurosciences and psychology](#neurosciences-and-psychology)
-   - [Spatial networks](#spatial-networks)
-   - [Public-health networks](#public-health-networks)
-   - [Social and economic networks](#social-and-economic-networks)
+   * [Ecological networks](#ecological-networks)
+   * [Bibliometric networks](#bibliometric-networks)
+   * [Networks in the natural and life sciences](#networks-in-the-natural-and-life-sciences)
+   * [Neurosciences and psychology](#neurosciences-and-psychology)
+   * [Spatial networks](#spatial-networks)
+   * [Public-health networks](#public-health-networks)
+   * [Social and economic networks](#social-and-economic-networks)
 - [References](#references)
 
+## Ecosystems and Data
 
-## Ecosystems
+### Ecosystems
 
 The starting point for analyzing networks in R is to familiarize with the main
 package 'families' or ecosystems. Using them, users can access functions to
@@ -160,7 +172,7 @@ create, import/export, edit, and otherwise operate on relational data.
     continually being to the documentation to provide user reference and support
     user experience.
 
-### Network construction
+### Relational data management and conversion tools
 
 Although the 'core' packages for network analysis in R can create a wide range
 of networks from different types of inputs, there are also specialized packages
@@ -209,6 +221,13 @@ while computing inside verbs.
 
 - `r pkg("backbone")` enables the extraction of the sparse and unweighted
 subgraph of a network called 'backbone'.
+
+## Exploratory Data Analysis
+
+`r pkg ("igraph")`, `r pkg ("sna")`, and `r pkg("manynet")` offer functions for
+a similar set of network-analytic and visualisation operations, whereas `r pkg ("tidygraph")` is
+more limited. However, some algorithms differ from each other and from those
+are some specialized packages for their implementation, speed, or defaults.
 
 ### Visualization
 
@@ -302,14 +321,6 @@ between the `r bioc("graph")` package and the _graphviz_ library.
 can be used, for example, in visualizing multipartite and other complex
 networks.
 
-
-## Network analysis
-
-`r pkg ("igraph")`, `r pkg ("sna")`, and `r pkg("manynet")` offer functions for
-a similar set of network-analytic operations, whereas `r pkg ("tidygraph")` is
-more limited. However, some algorithms differ from each other and from those
-are some specialized packages for their implementation, speed, or defaults.
-
 ### Centrality
 
 Both main ecosystems can compute betweenness, eigenvalue, power, and closeness
@@ -330,8 +341,9 @@ adjacency matrices (either in the built-in `matrix` class or in `Matrix`'s
 
 - `r pkg("netrankr")` offers index-free centrality rankings via
 _neighborhood-inclusion_ or _positional dominance_ and based on probabilistic
-methods like computing expected node ranks and relative rank probabilities (see
-also Schoch 2018).
+methods like computing expected node ranks and relative rank probabilities.
+
+## Group detection
 
 ### Community detection
 
@@ -353,27 +365,21 @@ well as generate a mesoscopic matrix (`linkcomm::getCommunityMatrix`). Moreover,
 it can produce membership for hierarchical communities
 (`linkcomm::getNestedHierarchies`).
 
-### Model-based clustering 
+### Blockmodeling
 
-Model-based clustering is a probabilistic approach to grouping nodes in a
-network based on their connectivity patterns, assuming that the data arise from
-a (mixture of) latent distribution(s). These methods are particularly effective
-for identifying undetected structures and capturing uncertainty in network
-partitions.
-
-#### Generalized blockmodeling (structural and/or regular equivalence)
+#### Generalized (structural and/or regular equivalence)
 
 - `r pkg("sna")` implements a simple version of structural-equivalence
 blockmodel (`sna::blockmodel`). It can also generate networks with a given
 blockmodel as well as print and plot the results.
 
 - `r pkg("concorR")` implements the classical CONCOR (Convergence of iterated
-Correlation) algorithm (Breiger, Boorman, and Arabie 1975) for one- and
+Correlation) algorithm for one- and
 multi-mode un/directed networks.
 
 - `r pkg("BMconcor")` allows the simultaneous blockmodeling of networks based on
 structural and regular equivalence through singular value decomposition (SVD) by
-blocks (see Lafosse and Hanafi 1997)
+blocks.
 
 - `r pkg("blockmodeling")`: this package offers and implementation of
 generalized blockmodeling (`blockmodeling::optRandomParC`) as well as functions
@@ -387,7 +393,7 @@ generalized blockmodeling of single-relation, one-mode networks from the package
 partitions using `r pkg("igraph")`, `r pkg("network")`, and more.
 
 - `r pkg("kmBlock")` implements a k-means like approach to the blockmodeling of
-one-mode and linked networks as presented in Žiberna (2020).
+one-mode and linked networks.
 
 - `r pkg("dBlockmodeling")` contains functions to apply blockmodeling of signed
 (positive and negative weights are assigned to the links), one-mode and valued
@@ -398,10 +404,9 @@ blockmodeling with structural equivalence (`signnet::signed_blockmodel`) and
 generalized equivalence (`signnet::signed_blockmodel_general`) of signed
 networks based on objects from `r pkg("igraph")` 
 
-- `r pkg("oaqc")` enables efficient computation of the orbit-aware quad census
-from Ortmann and Brandes (2017, `r doi("10.1007/s41109-017-0027-2")`).
+- `r pkg("oaqc")` enables efficient computation of the orbit-aware quad census.
 
-#### Stochastic blockmodeling (SBM)
+#### Stochastic (SBM)
 
 - `r pkg("igraph")` cannot run SBMs, but it can generate a random graph
 according to a specified SBM (`igraph::sample_sbm`) or an arbitrary hierarchical
@@ -417,16 +422,14 @@ covariates and supports multiplex binary networks via
 `blockmodels::BM_bernoulli_multiplex`.
 
 - `r pkg("sbm")` is an extension of `blockmodels` for bi- and multi-partite as
-well as multiplex networks as proposed by Barbillon and colleagues (2017)
-through dedicated `R6` classes. It includes functions to plot the resulting
-partition.
+well as multiplex networks through dedicated `R6` classes. It includes functions
+to plot the resulting partition.
 
 - `r pkg ("greed")` leverages a combination of greedy local search and a genetic
-algorithm (see Côme et al 2021) to execute (degree-corrected) SBM and LBM.
+algorithm to execute (degree-corrected) SBM and LBM.
 
 - `r pkg("dynsbm")`, archived from the CRAN repository on 2023-10-27 due to a
-faulty dependence, implements the model for temporal networks presented in
-Matias and Miele (2020) which combines a static
+faulty dependence, implements the model for temporal networks which combines a static
 SBM with independent Markov chains for the dynamic part. It supports binary and
 weighted networks with both discrete and continuous edges. Includes also
 functions for plotting (`dynsbm::adjacency.plot`, `dynsbm::alluvial.plot`,
@@ -435,20 +438,18 @@ as an array of the right format.
 
 - `r pkg("MLVSBM")` Implements the SBM of multilevel networks where the
 different matrices each represent an interaction layer either weighter or
-binary. It generalizes the approach proposed by Chabert-Liddell et al. (2021) to
-more than two layers.
+binary. It generalizes the original approach to more than two layers.
 
 - `r pkg("StochBlock")` implements the stochastic blockmodeling of one-mode and
-linked networks as implemented in Škulj and Žiberna (2022). It includes utilities to plot the results
+linked networks. It includes utilities to plot the results
 but cannot choose automatically the 'right' number of clusters and tends to be
 very slow according to subsequent reviews (see Cugmas and Žiberna 2023).
 
 - `r pkg("GREMLINS")` implements the SBM of generalized multipartite networks
 where the different matrices each involve nodes that can be partitioned into 
-a-priori defined _functional groups_ as proposed by Bar-Hen, Barbillon, and 
-Donnet (2018).
+a-priori defined _functional groups_.
 
-#### Others
+### Others
 
 - `r pkg("clustNet")` allows to cluster units in a network using a Bayesian
 mixture model that can account for node and edge covariates.
@@ -465,9 +466,8 @@ models based on `r pkg("igraph")` objects.
 and cluster model using `r pkg("network")` objects and compatibly with
 `r pkg("ergm")` approaches.
 
-- `r pkg("latenetwork")` implements Hoshino and Yanagi's (2023) method for the
-causal inference with noncompliance and network interference of unknown form on
-average causal using instrumental variables.
+- `r pkg("latenetwork")` implements a method for causal inference with noncompliance
+and network interference of unknown form on average causal using instrumental variables.
 
 - `r pkg("netClust")` provides a function to cluster one-layer
 (`netClust::netEM_unilayer`) and multilayer (`netClust::netEM_multilayer`)
@@ -487,7 +487,7 @@ conditions.
 
 ### Cross-sectional networks
 
-- `r pkg("ergm")` provides functions to fit, simulate and analyze
+- `r pkg("ergm")` from the `r pkg("statnet")` ecosystem provides functions to fit, simulate and analyze
 exponential-family random graph models (ERGM). Depending on specific needs,
 several specialized extensions are available.
 
@@ -503,8 +503,8 @@ several specialized extensions are available.
   | Large hierarchical ERGMs                    | `r pkg("bigergm")`    |
 
 - `r pkg("amen")` offers additive and multiplicative effect (AME) models with
-regression terms, covariance structure of the social relations model (Warner,
-Kenny and Stoto (1979), and multiplicative factor models (Hoff 2009).
+regression terms, covariance structure of the social relations model,
+and multiplicative factor models.
 It supports binary networks as well as valued ones (assuming a Gaussian,
 zero-inflated/tobit, ordinal, or fixed-rank nomination model)
 
@@ -513,8 +513,7 @@ stability of estimated structures and centrality indices on undirected networks
 (For an alternative see `r pkg("localboot")`).
 
 - `r pkg("fastnet")` allows to simulate large-scale social networks and retrieve
-their most relevant metrics following the approach proposed by Dong, Castro,
-and Shaikh (2020).
+their most relevant metrics following a new approach.
 
 - `r pkg("nda")` gathers non-parametric dimensionality-reduction functions 
 with/out (automated) feature selection and limited plotting capabilities.
@@ -524,7 +523,7 @@ formation process in which edges are added one at a time drawn from a
 distribution conditional on edges already added, with order unknown.
 
 - `r pkg("MoNAn")` implements the method to analyze the structure of weighted
-mobility networks or distribution networks outlined in Block et al (2022).
+mobility networks or distribution networks outlined.
 
 - `r pkg("ERPM")` extends exponential random graph models (ERGMs) to explain
 cross-sectional or longitudinal observed partitions, i.e. sets of
@@ -535,14 +534,14 @@ attributes, relations between individuals, and size-related factors.
 ### Multimodal and multilevel networks
 
 - `r pkg("migraph")` is an `r pkg("igraph")` extension to analyze multimodal
-networks as described in Knoke, Diani, Hollway, and Christopoulos (2021).
+networks.
 
 - `r pkg("multinets")` is an `r pkg ("igraph")` extension to analyze multilevel
-networks as described in Lazega and Snijders (2016).
+networks.
 
 - `r pkg("multiplex")` makes possible, among other things, to create and
 manipulate multiplex, multimode, and multilevel network data with different
-formats (Rivero Ostoic 2020, `r doi("10.18637/jss.v092.i11")`).
+formats.
 
 - `r pkg("dyads")` offers functions for the MCMC simulation of dyadic network
 models j2, p2 (also multilevel) and b2 model.
@@ -551,30 +550,12 @@ models j2, p2 (also multilevel) and b2 model.
 longitudinal networks.
 
 - `r pkg("incidentally")` implements methods to generate incidence matrices as
-described in Neal (2022: `r doi("10.31219/osf.io/ectms")`).
+described in Neal (2022).
 
 ### Dynamic networks
 
 The following packages focus on modeling and simulation of networks that evolve
 over time and network processes that occur over time.
-
-### Dynamics and diffusion
-
-- `r pkg("tsna")` is used to analyze them.
-
-- `r pkg("EpiModel")` allows to simulate mathematical models of infectious
-disease dynamics.
-
-- `r pkg("manynet")` can manipulate, visualize, and analyze longitudinal and
-network event data, including running contagion/diffusion processes and
-compartmental models.
-
-- `r pkg("netdiffuseR")` was developed as part of Valente et al. (2015:
-`r doi("10.1016/j.socscimed.2015.10.001")`). The package is for empirical
-statistical analysis, visualization and simulation of network diffusion and
-contagion processes. It implements algorithms for calculating network diffusion
-statistics such as transmission rate, hazard rates, exposure models, network
-threshold levels, infectiousness (contagion), and susceptibility.
 
 #### Relational events
 
@@ -587,8 +568,7 @@ simulate dyad-oriented relational event models. But only `r pkg("relevent")` can
 estimate event sequence data without time stamps.
 
 - `r pkg("goldfish")` offers functions to fit and simulate actor-oriented
-dynamic network actor models and dyad-oriented relational event models as
-described in Stadtfeld et al. (2017).
+dynamic network actor models and dyad-oriented relational event models.
 
 #### Discrete observations
 
@@ -612,10 +592,27 @@ the prior time steps.
 - `r pkg("RSiena")` estimation of continuous-time Stochastic Actor-Oriented
 Models (SAOMs) for panel network data.
 
-- `r pkg("idopNetwork")` implments the model proposed by Cao et al (2022) to
+- `r pkg("idopNetwork")` implments the model to
 convert static data into their 'dynamic' form contextually inferring
 informative, dynamic, multi-directional networks with clusterable structures.
 
+
+#### Diffusion on networks
+
+- `r pkg("tsna")` is used to analyze them.
+
+- `r pkg("EpiModel")` allows to simulate mathematical models of infectious
+disease dynamics.
+
+- `r pkg("manynet")` can manipulate, visualize, and analyze longitudinal and
+network event data, including running contagion/diffusion processes and
+compartmental models.
+
+- `r pkg("netdiffuseR")` was developed for empirical
+statistical analysis, visualization and simulation of network diffusion and
+contagion processes. It implements algorithms for calculating network diffusion
+statistics such as transmission rate, hazard rates, exposure models, network
+threshold levels, infectiousness (contagion), and susceptibility.
 
 ## Field packages
 
@@ -627,8 +624,7 @@ particular packages.
 
 - `r pkg("econetwork")` is a collection of advanced functions to analyze and
 models of ecological networks (mainly food webs and host-parasite relations, but
-also plant-pollinator and other mutualistic ones) statically and dynamically
-(based on Ohlmann _et al._ 2023). 
+also plant-pollinator and other mutualistic ones) statically and dynamically. 
 
 - `r pkg("AnimalHabitatNetwork")` provides functions for generating and
 visualizing networks representing the physical configurations of animal
@@ -682,8 +678,7 @@ data using `VOSviewer.jar`.
 
 - `r pkg("biblionetwork")` proposes functions to identify and weight the edges
 in a bibliometric network. All functions are optimized for large datasets. It
-implements different methods for different types of relations (based on
-Perianes-Rodriguez, Waltman, and Van Eck 2016; Leydesdorff and Park 2017):
+implements different methods for different types of relations:
 Co-authorship supports simple counting, (refined) fractional weight with or with
 cosine normalization. Bibliographic coupling supports: coupling strength and
 angle. Co-citation supports the cosine normalization of count weights.
@@ -706,15 +701,15 @@ natural sciences. There are several packages on Bioconductor that
 reverse-depend/extend these functionalities.
 
 - `r pkg("c3net")` allows to infer gene-regulation networks with direct physical
-interactions using `C3NET` (Altay and Emmert-Streib 2010). Other packages
+interactions using `C3NET`. Other packages
 implement improvements/variants of this algorithm based on the literature, such
 as:
 
 - `r pkg("Ac3net")` Infers directional conservative causal core in gene network
-based on the algorithm for directional network proposed by Altay (2018).
+based on a new algorithm for directional network proposed.
 
 - `r pkg("bc3net")` implements the BC3NET algorithm for inference on
-gene-regulation networks (Simoes and Emmert-Streib 2012). In essence it offers
+gene-regulation networks. In essence it offers
 a Bayesian approach with noninformative prior to the C3NET algorithm.
 
 - `r bioc("BioNAR")` implements a detailed topologically based network analysis
@@ -829,137 +824,14 @@ analysis of multi-layer social networks
 
 ## References
 
-- Altay, Gokmen. 2018. "Directed Conservative Causal Core Gene Networks".
-_bioRxiv_. `r doi("10.1101/271031")`
+- Bojanowski, Michalm and Lorien Jasny. `statnet` tutorial. *Introduction to Network Analysis Tools in R*. <https://statnet.org/workshop-intro-sna-tools/>
 
-- Altay, Gökmen, and Frank Emmert-Streib. 2010. "Inferring the Conservative
-Causal Core of Gene Regulatory Networks". _BMC Systems Biology_ 4(1): 132.
-`r doi("10.1186/1752-0509-4-132")`
-
-- Barbillon, Pierre, Sophie Donnet, Emmanuel Lazega, and Avner Bar-Hen. 2017.
-"Stochastic Block Models for Multiplex Networks: An Application to a Multilevel
-Network of Researchers". _Journal of the Royal Statistical Society Series A:
-Statistics in Society_ 180 (1): 295-314. `r doi("10.1111/rssa.12193")`
-
-- Bar-Hen, Avner, Pierre Barbillon, and Sophie Donnet. 2022. "Block Models for
-Generalized Multipartite Networks: Applications in Ecology and Ethnobiology".
-_Statistical Modelling_ 22 (4): 273-96. `r doi("10.1177/1471082X20963254")`
-
-- Batagelj, Vladimir, and Matjaž Zaveršnik. "Fast Algorithms for Determining
-(Generalized) Core Groups in Social Networks". _Advances in Data Analysis and
-Classification_ 5, no. 2 (1 July 2011): 129-45.
-`r doi("10.1007/s11634-010-0079-y")`
-
-- Block, Per, Christoph Stadtfeld, and Garry Robins. 2022. "A Statistical Model
-for the Analysis of Mobility Tables as Weighted Networks with an Application to
-Faculty Hiring Networks". _Social Networks_ 68: 264-278.
-`r doi("10.1016/j.socnet.2021.08.003")`
-
-- Breiger, Ronald L, Scott A Boorman, and Phipps Arabie. 1975. "An Algorithm for
-Clustering Relational Data with Applications to Social Network Analysis and
-Comparison with Multidimensional Scaling". _Journal of Mathematical Psychology_
-12 (3): 328-83. `r doi("10.1016/0022-2496(75)90028-0")`
-
-- Cao, Xiaocang, Ang Dong, Guangbo Kang, Xiaoli Wang, Liyun Duan, Huixing Hou,
-Tianming Zhao, et al. 2022. "Modeling Spatial Interaction Networks of the Gut
-Microbiota". _Gut Microbes_ 14(1): 2106103.
-`r doi("10.1080/19490976.2022.2106103")`
-
-- Chabert-Liddell, Saint-Clair, Pierre Barbillon, Sophie Donnet, and Emmanuel
-Lazega. 2021. "A Stochastic Block Model Approach for the Analysis of Multilevel
-Networks: An Application to the Sociology of Organizations". _Computational
-Statistics & Data Analysis_ 158 (June): 107179.
-`r doi("10.1016/j.csda.2021.107179")`
-
-- Côme, E., Jouvin, N., Latouche, P. et al. 2021. "Hierarchical Clustering with
-Discrete Latent Variable Models and the Integrated Classification Likelihood".
-_Advances in Data Analysis and Classification_ 15: 957-986.
-`r doi("10.1007/s11634-021-00440-z")`
+- Csárdi, Gábor, and Tamás Nepus. 2006. `igraph` introduction. *`igraph` Reference Manual*. <https://igraph.org/c/doc/igraph-Introduction.html>
 
 - Cugmas, Marjan, and Aleš Žiberna. 2023. "Approaches to Blockmodeling Dynamic
 Networks: A Monte Carlo Simulation Study". _Social Networks_ 73 (May): 7-19.
 `r doi("10.1016/j.socnet.2022.12.003")`
 
-- Dong, Xu, Luis Castro, and Nazrul Shaikh. 2020. "fastnet: An R Package for
-Fast Simulation and Analysis of Large-Scale Social Networks". _Journal of
-Statistical Software_ 96: 1-23. `r doi("10.18637/jss.v096.i07")`
-
-- Hoff, Peter D. 2009. "Multiplicative Latent Factor Models for Description and
-Prediction of Social Networks". _Computational and Mathematical Organization
-Theory_ 15(4): 261-72. `r doi("10.1007/s10588-008-9040-4")`
-
-- Hoffman, Marion, Per Block, Timon Elmer, and Christoph Stadtfeld. 2020. "A
-Model for the Dynamics of Face-to-Face Interactions in Social Groups". _Network
-Science_ 8(S1): S4-S25. `r doi("10.1017/nws.2020.3")`
-
-- Hoshino, Tadao, and Takahide Yanagi. "Causal Inference with Noncompliance and
-Unknown Interference". _arXiv_, 22 Octover 2023.
-`r doi("10.48550/arXiv.2108.07455")`.
-
 - Kanevsky, Gregory. 2016. "R Graph Objects: igraph vs. network. _R Bloggers_.
 January 30, 2016.
-<https://www.R-bloggers.com/2016/01/r-graph-objects-igraph-vs-network/>
-
-- Knoke, David, Mario Diani, James Hollway, and Dimitris Christopoulos. 2021.
-_Multimodal Political Networks_. Cambridge: Cambridge University Press.
-`r doi("10.1017/9781108985000")`
-
-- Lafosse, R., and Hanafi, M. 1997. "Concordance d'un tableau avec $K$ tableaux:
-Définition de $K + 1$ uples synthétiques." _Revue de Statistique Appliquée_
-45(4): 111-126. <https://eudml.org/doc/106424>
-
-- Lazega, Emmanuel, and Tom A.B. Snijders, eds. 2016. _Multilevel Network
-Analysis for the Social Sciences_. Cham: Springer International Publishing.
-`r doi("10.1007/978-3-319-24520-1")`
-
-- Leydesdorff, Loet, and Han Woo Park. 2017. "Full and Fractional Counting in
-Bibliometric Networks". _Journal of Informetrics_ 11(1): 117-20.
-`r doi("10.1016/j.joi.2016.11.007")`
-
-- Martin, Evan A., and A. Fu. 2019. "Approximate Bayesian Inference of Directed
-Acyclic Graphs in Biology with Flexible Priors on Edge States".
-`r doi("10.48550/arXiv.1909.10678")`
-
-- Matias, Catherine, and Vincent Miele. 2017. "Statistical Clustering of
-Temporal Networks through a Dynamic Stochastic Block Model". _Journal of the
-Royal Statistical Society. Series B (Statistical Methodology)_ 79 (4): 1119-41.
-<https://www.jstor.org/stable/26773154")`
-
-- Ohlmann, Marc, Catherine Matias, Giovanni Poggiato, Stéphane Dray, Wilfried
-Thuiller, and Vincent Miele. 2023. "Quantifying the Overall Effect of Biotic
-Interactions on Species Distributions along Environmental Gradients".
-_Ecological Modelling_ 483: 110424. `r doi("10.1016/j.ecolmodel.2023.110424")`
-
-- Perianes-Rodriguez, Antonio, Ludo Waltman, and Nees Jan Van Eck. 2016.
-"Constructing Bibliometric Networks: A Comparison between Full and Fractional
-Counting". _Journal of Informetrics_ 10(4): 1178-95.
-`r doi("10.1016/j.joi.2016.10.006")`
-
-- Schoch, David. 2018. "Centrality without Indices: Partial Rankings and Rank
-Probabilities in Networks". _Social Networks_ 54: 50-60.
-`r doi("10.1016/j.socnet.2017.12.003")`
-
-- Simoes, Ricardo de Matos, and Frank Emmert-Streib. 2012. "Bagging Statistical
-Network Inference from Large-Scale Gene Expression Data". _PLOS ONE_ 7(3):
-e33624. `r doi("10.1371/journal.pone.0033624")`
-
-- Škulj, Damjan, and Aleš Žiberna. 2022. "Stochastic Blockmodeling of Linked
-Networks". _Social Networks_ 70: 240-52. `r doi("10.1016/j.socnet.2022.02.001")`
-
-- Stadtfeld, Christoph, James Hollway, and Per Block. 2017. "Dynamic Network
-Actor Models: Investigating Coordination Ties through Time". _Sociological
-Methodology_ 47(1): 1-40. `r doi("10.1177/0081175017709295")`
-
-- Warner, Rebecca M., David A. Kenny, and Michael Stoto. 1979. "A New Round
-Robin Analysis of Variance for Social Interaction Data." _Journal of Personality
-and Social Psychology_ 37(10): 1742-57. `r doi("10.1037/0022-3514.37.10.1742")`
-
-- Žiberna, Aleš. 2020. "K-Means-Based Algorithm for Blockmodeling Linked
-Networks". _Social Networks_ 61: 153-69. `r doi("10.1016/j.socnet.2019.10.006")`
-
-
-### Links
-
-- [`igraph` introduction](https://igraph.org/c/doc/igraph-Introduction.html)
-
-- [`statnet` tutorial](https://statnet.org/workshop-intro-sna-tools/)
+<https://www.R-bloggers.com/2016/01/r-graph-objects-igraph-vs-network/>`
