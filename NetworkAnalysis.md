@@ -658,9 +658,9 @@ some ecological indices on them.
 fitting a variety of statistical models and sample coverage estimators to
 correct for (likely) missing ties. It works only on bipartite networks.
 
-- `pkg("EcoNetGen")` to simulate and sample from ecological networks.
+- `r pkg("EcoNetGen")` to simulate and sample from ecological networks.
 
-- `pkg("econullnetr")` to carry out null-model analysis for ecological
+- `r pkg("econullnetr")` to carry out null-model analysis for ecological
 networks. 
 
 ### Bibliometric networks
