@@ -6,8 +6,39 @@ email: Fabio-Ashtar.Telarico@fdv.uni-lj.si
 version: 2024-12-30
 source: https://github.com/cran-task-views/NetworkAnalysis/
 ---
+```{r setup, echo=FALSE, message=FALSE, warning=FALSE, error=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE, results="asis")
+options(width = 10000)
+```
+```{r}
+bib <- rbibutils::readBib("REFERENCES.bib")
+library(tools)
 
+## A function that keeps track of a vector of distinct keys in the
+## orders they first appeared. tocite(key) appends key to the list if
+## not already present and returns the updated list
+## invisibly. tocite() returns the list so far.
+tocite <- local({
+  keys <- character(0)
+  function(key){
+    if(missing(key)) keys
+    else keys <<- unique(c(keys, key))
+  }
+})
 
+## Preserve these directives for ctv.
+for(name in c("doi", "view", "pkg", "bioc", "github", "rforge", "gcode", "ohat"))
+  assign(name, function(...)sprintf('`r %s`', deparse1(match.call())))
+
+cite <- function(key){
+  ## Check if key exists.
+  if(!hasName(bib, key)) stop("Key ", sQuote(key), " not found!")
+
+  ## Add it to the list and look up its location.
+  k <- match(key, tocite(key))
+  sprintf("[\\[%0.0f\\]](#cite-%0.0f)", k, k)
+}
+```
 This CRAN task view provides a curated list of R packages for analyzing and
 modelling networks (also known as _relational data_ or _graphs_). These tools
 facilitate the exploration of natural, social, and other phenomena by focusing
@@ -109,7 +140,8 @@ create, import/export, edit, and otherwise operate on relational data.
     According to the latest review this is the largest network-analysis
     ecosystem in R by number of extensions (see Kanevsky 2016).
 
-- `r pkg("statnet", priority = "core")`, sometimes used only as `r pkg("sna", priority = "core")` and/or `r pkg("network", priority = "core")` [\[1\]](#cite-1) is a more
+- `r pkg("statnet", priority = "core")`, sometimes used only as `r pkg("sna",
+  priority = "core")` and/or `r pkg("network", priority = "core")` `r cite("Bu08n")` is a more
   organic family of packages for statistical network analysis built upon common
   data representations and design choices. But there are also 'add-ons',
   although not as many as in the previous ecosystem. 
@@ -140,9 +172,10 @@ create, import/export, edit, and otherwise operate on relational data.
     with multiple packages alike.
  
   - *Flexibility*: the package leverages S3 dispatching so that all the
-    functions work with many _classes_ of network objects, such as network or `r bioc("graph")` objects, but also edge lists, matrices, and
+    functions work with many _classes_ of network objects, such as `r pkg
+    ("network")` or `r bioc("graph")` objects, but also edge lists, matrices, and
     various other more specific classes.  Its coercion routines retain more
-    information than the long-standing alternative `r pkg("intergraph")`, being
+    information than the long-standing alternative `r pkg ("intergraph")`, being
     able to transform between more classes and receiving more frequent updates. 
     It also includes more complete import and export routines than generalist
     packages.
@@ -201,8 +234,8 @@ network analysis. Yet, it provides a flexible piped approach to working with
 relational data, allowing users to apply familiar data manipulation techniques
 from the tidyverse to graphs. Users can easily perform tasks such as filtering,
 summarizing, and joining graph data using familiar tidyverse syntax. Given that
-both `r pkg("igraph")` and `r pkg("sna")` provide piped functions for most
-operations, `r pkg("tidygraph")`'s added value lies mainly in the possibility
+both `r pkg ("igraph")` and `r pkg ("sna")` provide piped functions for most
+operations, `r pkg ("tidygraph")`'s added value lies mainly in the possibility
 of accessing directly either the node data, the edge data or the graph itself
 while computing inside verbs.
 
@@ -304,18 +337,19 @@ networks.
 
 ## Network analysis
 
-`r pkg("igraph")`, `r pkg("sna")`, and `r pkg("manynet")` offer functions for
-a similar set of network-analytic operations, whereas `r pkg("tidygraph")` is
+`r pkg ("igraph")`, `r pkg ("sna")`, and `r pkg("manynet")` offer functions for
+a similar set of network-analytic operations, whereas `r pkg ("tidygraph")` is
 more limited. However, some algorithms differ from each other and from those
 are some specialized packages for their implementation, speed, or defaults.
 
 ### Centrality
 
 Both main ecosystems can compute betweenness, eigenvalue, power, and closeness
-centrality, but `r pkg("igraph")` offers more options than `r pkg("sna")` and
-`r pkg("tidygraph")` overall. In addition:
+centrality, but `r pkg ("igraph")` offers more options than `r pkg ("sna")` and
+`r pkg ("tidygraph")` overall. In addition:
 
-- `r pkg("centiserve")` adds dozens of centrality measures for igraph objects such as bottleneck, decay, and entropy centrality.
+- `r pkg("centiserve")` adds dozens of centrality measures for `r pkg
+("igraph")` objects such as bottleneck, decay, and entropy centrality.
 
 - `r pkg("birankr")` provides optimized functions for estimating various
 centrality measures in bipartite/two-mode networks. It can also estimate
@@ -345,7 +379,7 @@ is applicable across the board.
 
 - `r pkg("linkcomm")` provides functions for generating, visualizing, and
 analyzing overlapping communities in networks of arbitrary size and type. Unlike
-`r pkg("igraph")` and `r pkg("network")`, it can compute relatedness
+`r pkg("igraph")` and `r pkg ("network")`, it can compute relatedness
 `linkcomm::getClusterRelatedness` and `linkcomm::getCommunityConnectedness` as
 well as generate a mesoscopic matrix (`linkcomm::getCommunityMatrix`). Moreover,
 it can produce membership for hierarchical communities
@@ -419,7 +453,7 @@ well as multiplex networks as proposed by Barbillon and colleagues (2017)
 through dedicated `R6` classes. It includes functions to plot the resulting
 partition.
 
-- `r pkg("greed")` leverages a combination of greedy local search and a genetic
+- `r pkg ("greed")` leverages a combination of greedy local search and a genetic
 algorithm (see Côme et al 2021) to execute (degree-corrected) SBM and LBM.
 
 - `r pkg("dynsbm")`, archived from the CRAN repository on 2023-10-27 due to a
@@ -459,8 +493,8 @@ including deciding on the number of clusters.
 integrated classification likelihood criterion and a mixture of stochastic block
 models based on `r pkg("igraph")` objects.
 
-- `r pkg("latentnet")` [\[2\]](#cite-2) provides functions to fit and simulate latent position
-and cluster model using `r pkg("network")` [\[1\]](#cite-1) objects and compatibly with
+- `r pkg("latentnet")` `r cite("KrHa08f")` provides functions to fit and simulate latent position
+and cluster model using `r pkg("network")` `r cite("Bu08n")` objects and compatibly with
 `r pkg("ergm")` approaches.
 
 - `r pkg("latenetwork")` implements Hoshino and Yanagi's (2023) method for the
@@ -486,7 +520,7 @@ conditions.
 ### Cross-sectional networks
 
 - `r pkg("ergm")` from the `r pkg("statnet")` ecosystem provides functions to fit, simulate and analyze
-exponential-family random graph models (ERGM) [\[3\]](#cite-3). Depending on specific needs,
+exponential-family random graph models (ERGM) `r cite("LuKo12e")`. Depending on specific needs,
 several specialized extensions are available.
 
   | Use case                                    | Package               |
@@ -525,7 +559,7 @@ distribution conditional on edges already added, with order unknown.
 mobility networks or distribution networks outlined in Block et al (2022).
 
 - `r pkg("ERPM")` extends exponential random graph models (ERGMs) to explain
-cross-sectional or longitudinal observed partitions [\[4\]](#cite-4), i.e. sets of
+cross-sectional or longitudinal observed partitions `r cite("HoBl23m")`, i.e. sets of
 non-overlapping groups, such as face-to-face interactions, animal herds, or
 political coalitions, through group formation processes based on individual
 attributes, relations between individuals, and size-related factors.
@@ -535,7 +569,7 @@ attributes, relations between individuals, and size-related factors.
 - `r pkg("migraph")` is an `r pkg("igraph")` extension to analyze multimodal
 networks as described in Knoke, Diani, Hollway, and Christopoulos (2021).
 
-- `r pkg("multinets")` is an `r pkg("igraph")` extension to analyze multilevel
+- `r pkg("multinets")` is an `r pkg ("igraph")` extension to analyze multilevel
 networks as described in Lazega and Snijders (2016).
 
 - `r pkg("multiplex")` makes possible, among other things, to create and
@@ -741,7 +775,7 @@ centrality of nodes and community or the network's clustering coefficient.
 
 - `r pkg("qgraph")` provides tools for visualizing and analyzing weighted
 networks and a Gaussian graphical model for plotting. It is compatible with
-`r pkg("igraph")` through the `qgraph::as.igraph.qgraph` function. It is mostly
+`r pkg ("igraph")` through the `qgraph::as.igraph.qgraph` function. It is mostly
 used in psychology and neurosciences.
 
 - `r pkg("HospitalNetwork")` provides functions to construct a one-mode network
@@ -757,7 +791,7 @@ with node coordinates, the computation of network measures, the support of
 spatial operations (projection to different coordinate reference systems,
 handling of bounding boxes, etc.) and the plotting of the `geonetwork` object
 combined with supplementary cartography for spatial representation. It is
-compatible with `r pkg("igraph")`.
+compatible with `r pkg ("igraph")`.
 
 - `r pkg("sfnetworks")` combines the work-horse spatial-data package in R (`sf`)
 and `r pkg("tidygraph")` for tidyverse-friendly classes and routines (shortest
@@ -794,13 +828,13 @@ using stochastic simulation algorithm and an individual-based approach.
 as transmission rate, hazard rates, exposure models, network threshold levels,
 infectiousness (contagion), and susceptibility. 
 
-- `r pkg("EpiModel")` builds on Statnet's for epidemic modelling. But more on
+- `r pkg ("EpiModel")` builds on Statnet's for epidemic modelling. But more on
 this field of application can be found in the CRAN task view
 `r view("Epidemiology")`.
 
 ### Social and economic networks
 
-- `r pkg("sna")` implements many operations commonly carried out on networks in
+- `r pkg ("sna")` implements many operations commonly carried out on networks in
 the social and economic sciences with the ability of regress a network variable
 on others using ordinary least square, linear network autocorrelation models or
 a logistic regression (More on this type of applications can be found in the
@@ -811,7 +845,7 @@ financial networks involving both physical and legal persons. The package
 assists in creating various types of financial networks: ownership, board
 interlocks, or both. It support different tie-weighting procedures (valued or
 binary), and renders them in the most common formats (adjacency matrix,
-incidence matrix, edge list, `r pkg("igraph")`, `r pkg("statnet")`).
+incidence matrix, edge list, `r pkg ("igraph")`, `r pkg ("statnet")`).
 
 - `r pkg("ITNr")` gathers functions to clean and process international trade
 data into an adjacency matrix. It can also extract the network's backbone,
@@ -826,14 +860,74 @@ analysis of multi-layer social networks
 
 
 ## References
+```{r, bibstyle}
+## A custom R bib style that generates markdown.
 
-1. []{#cite-1}Butts Carter T. (2008). "network: A Package for Managing Relational Data in R." *Journal of Statistical Software*, **24**(2), 1-36. `r doi("10.18637/jss.v024.i02")`.
+library(tools)
 
-2. []{#cite-2}Krivitsky Pavel N., Handcock Mark S. (2008). "Fitting Position Latent Cluster Models for Social Networks with latentnet." *Journal of Statistical Software*, **24**(5), 1-23. `r doi("10.18637/jss.v024.i05")`.
+mdstyle <- bibstyle("md", as.environment(as.list(bibstyle("JSS"), all.names=TRUE)), .default = FALSE)
+parent.env(mdstyle) <- parent.env(bibstyle())
+for(name in names(mdstyle)){
+  if(is.function(mdstyle[[name]]) &&
+     identical(environment(mdstyle[[name]]), bibstyle("JSS")))
+    environment(mdstyle[[name]]) <- mdstyle
+}
 
-3. []{#cite-3}Lusher Dean, Koskinen Johan, Robins Garry (2012). *Exponential Random Graph Models for Social Networks: Theory, Methods, and Applications*. Cambridge University Press.
+mdstyle$fmtTitle <- function (title) 
+if (length(title)) {
+    paste0('"', addPeriod(collapse(cleanupLatex(title))), 
+        '"')
+}
+environment(mdstyle$fmtTitle) <- mdstyle
 
-4. []{#cite-4}Hoffman Marion, Block Per, Snijders Tom A. B. (2023). "Modeling Partitions of Individuals." *Sociological Methodology*, **53**(1), 1-41. `r doi("10.1177/00811750221145166")`.
+mdstyle$volNum <- function (paper) {
+    if (length(paper$volume)) {
+        result <- paste0("**", collapse(paper$volume), "**")
+        if (length(paper$number)) 
+            result <- paste0(result, "(", collapse(paper$number), 
+                ")")
+        result
+    }
+}
+environment(mdstyle$volNum) <- mdstyle
+
+mdstyle$shortName <- function (person) 
+{
+    if (length(person$family)) {
+        result <- cleanupLatex(person$family)
+        if (length(person$given) == 1)
+          paste(result, cleanupLatex(person$given))
+        else if(length(person$given) > 1)
+          paste(result, cleanupLatex(person$given[[1]]), paste0(sapply(person$given[-1], cleanupLatex), ".", collapse = " "))
+        else result
+    }
+    else paste(cleanupLatex(person$given), collapse = " ")
+}
+environment(mdstyle$shortName) <- mdstyle
+
+mdstyle$fmtDOI <- function(s) if(length(s)) paste(sprintf('`r doi("%s")`', s), collapse = " ")
+environment(mdstyle$fmtDOI) <- mdstyle
+
+mdstyle$extraInfo <- function(paper) {
+  loc <- fmtDOI(paper$doi) %||% fmtEprint(paper$eprint) %||% fmtUrl(paper$url)
+  
+  result <- paste(c(loc, fmtNote(paper$note)), collapse = ", ")
+  if (nzchar(result))
+    result
+}
+environment(mdstyle$extraInfo) <- mdstyle
+
+mdstyle$fmtISBN <- mdstyle$fmtISSN <- function(s) NULL
+
+mdstyle$emph <- function(s) if(length(s)) paste0("*", s, "*")
+
+```
+```{r, print-bibliography}
+l <- tocite()
+i <- seq_along(l)
+
+cat(paste0(sprintf("%0.0f. []{#cite-%0.0f}", i, i), bib[l] |> sapply(format, "text", .bibstyle = "md"), collapse = "\n\n"))
+```
 
 
 - Altay, Gokmen. 2018. "Directed Conservative Causal Core Gene Networks".
