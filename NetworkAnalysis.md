@@ -361,6 +361,8 @@ adjacency matrices (either in the built-in `matrix` class or in `Matrix`'s
 _neighborhood-inclusion_ or _positional dominance_ and based on probabilistic
 methods like computing expected node ranks and relative rank probabilities.
 
+- `r pkg("influential") provides a collection of tools designed to help users work with networks and understand their structure and properties including analyzing network topology and calculating several centrality measures. In addition, it provides unsupervised centrality ranking based on influence through a Susceptible–Infected–Recovered model with leave-one-out cross validation (a machine learning technique). Another interesting advanced function is the ability to compute dependence and correlation between pairs of centrality measures.
+
 ## Group detection
 
 ### Community detection
