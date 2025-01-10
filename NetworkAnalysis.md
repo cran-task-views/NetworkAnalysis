@@ -512,16 +512,16 @@ conditions.
 exponential-family random graph models (ERGM). Depending on specific needs,
 several specialized extensions are available.
 
-  | Use case                                    | Package               |
-  |:--------------------------------------------|:----------------------|
-  | Count weights                               | `r pkg("ergm.count")` |
-  | Egocentrically sampled networks             | `r pkg("ergm.ego")`   |
-  | Multilayer networks and samples of networks | `r pkg("ergm.multi")` |
-  | Multilayer networks using Monte-Carlo MLE   | `r pkg("mlergm")`     |
-  | Rank-order networks                         | `r pkg("ergm.rank")`  |
-  | Modeling ERGM-generating processes          | `r pkg("ergmgp")`     |
-  | Fit ERGM to small networks                  | `r pkg("ergmito")`    |
-  | Large hierarchical ERGMs                    | `r pkg("bigergm")`    |
+  | Use case                                           | Package               |
+  |:---------------------------------------------------|:----------------------|
+  | Count weights                                      | `r pkg("ergm.count")` |
+  | Egocentrically sampled networks                    | `r pkg("ergm.ego")`   |
+  | Multilayer networks and samples of networks        | `r pkg("ergm.multi")` |
+  | Networks with block structure and local dependence | `r pkg("mlergm")`     |
+  | Rank-order networks                                | `r pkg("ergm.rank")`  |
+  | Modeling ERGM-generating processes                 | `r pkg("ergmgp")`     |
+  | Samples of small networks                          | `r pkg("ergmito")`    |
+  | Large hierarchical ERGMs                           | `r pkg("bigergm")`    |
 
 - `r pkg("amen")` offers additive and multiplicative effect (AME) models with
 regression terms, covariance structure of the social relations model,
