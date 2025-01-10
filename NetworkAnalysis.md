@@ -517,6 +517,7 @@ several specialized extensions are available.
   | Count weights                               | `r pkg("ergm.count")` |
   | Egocentrically sampled networks             | `r pkg("ergm.ego")`   |
   | Multilayer networks and samples of networks | `r pkg("ergm.multi")` |
+  | Multilayer networks using Monte-Carlo MLE   | `r pkg("mlergm")`     |
   | Rank-order networks                         | `r pkg("ergm.rank")`  |
   | Modeling ERGM-generating processes          | `r pkg("ergmgp")`     |
   | Fit ERGM to small networks                  | `r pkg("ergmito")`    |
