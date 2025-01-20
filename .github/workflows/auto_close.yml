@@ -14,8 +14,8 @@ jobs:
         with:
           days-before-issue-stale: 6
           days-before-issue-close: 4
-          stale-issue-label: "stale"
-          stale-issue-message: "This issue is stale because it has been open for 5 days with no activity."
+          stale-issue-label: "stalled"
+          stale-issue-message: "This issue is stalled because it has been open for 6 days with no activity."
           close-issue-message: "This issue was closed because it has been inactive for 10 days."
           days-before-pr-stale: -1
           days-before-pr-close: -1
