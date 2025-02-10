@@ -236,16 +236,15 @@ subgraph of a network called a *backbone*.
 
 ## Exploratory Data Analysis
 
-`r pkg ("igraph")`, `r pkg ("sna")`, and `r pkg("manynet")` offer functions for
-a similar set of network-analytic and visualization operations, whereas `r pkg ("tidygraph")` is
-more limited. However, some algorithms differ from each other and from those
-are some specialized packages for their implementation, speed, or defaults.
+Moving to Exploratory Data Analysis (EDA), `r pkg ("igraph")`, `r pkg ("sna")`, and `r pkg("manynet")` offer functions for a similar set of network-analytic and visualization operations, whereas `r pkg ("tidygraph")` is more limited. However, some algorithms differ from each other and from those are some specialized packages for their implementation, speed, or defaults.
 
 ### General
 
 - `r pkg("tsna")` implements a number of methods for exploratory
   analysis and summaries of temporal networks in the `r pkg("networkDynamic")`
   representation.
+
+- Reletadly to EDA, `r pkg("NetworkDistance")` offers many measures to compute the distance between two networks based on centrality, continuous spectral densities, the Euclidean distance between the adjacency matrices' spectra, the Frobenius norm of edge-to-edge difference, exponential kernel matrices, graphons, the discrepancy between two binary networks for each edge (Hamming), a combines the local Hamming distance and the global Ipsen-Mikhailov distance, and the log of graph moments.
 
 ### Visualization
 
@@ -487,6 +486,8 @@ models based on `r pkg("igraph")` objects.
 and cluster model using `r pkg("network")` objects and compatibly with
 `r pkg("ergm")` approaches.
 
+- relatedly, `r pkg("VBLPCM")` offers an alternative to `r pkg("latentnet")` for larger networks (on which the latter's package algorithm may be computationally prohibitive). It computes the approximation of the posterior of the `latentnet::ergmm()` function using a Variational Bayesian Expectation Maximisation algorithm. Thus, it is faster than the full-fledged MCMC sampler more accurate than `r pkg("latentnet")`'s two-stage maximum likelihood estimation (MLE). Indeed, Variational Bayes tends to converge quicker than the two-stage MLE, too.
+
 - `r pkg("latenetwork")` implements a method for causal inference with noncompliance
 and network interference of unknown form on average causal using instrumental variables.
 
@@ -635,6 +636,10 @@ statistical analysis, visualization and simulation of network diffusion and
 contagion processes. It implements algorithms for calculating network diffusion
 statistics such as transmission rate, hazard rates, exposure models, network
 threshold levels, infectiousness (contagion), and susceptibility.
+
+### Others
+
+- `r pkg("graphon") provides methods for estimating the *graphon* of a network based on tis adjacency matrix using empirical degree-sorting for stochastic blockmodel (SBM), SBM approximation, universal singular value thresholding, or neighborhood smoothing. Also, on the basis of the estiamted model, it can complete a matrix from a partially observed data. Additionally, it includes function to generate binary graph given an arbitrary graphon, Erdos-Renyi random graphs, and SBMs. Besides including 10 graphon models for simulation.
 
 ## Field packages
 
