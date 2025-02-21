@@ -246,6 +246,9 @@ Moving to Exploratory Data Analysis (EDA), `r pkg ("igraph")`, `r pkg ("sna")`, 
 
 - Reletadly to EDA, `r pkg("NetworkDistance")` offers many measures to compute the distance between two networks based on centrality, continuous spectral densities, the Euclidean distance between the adjacency matrices' spectra, the Frobenius norm of edge-to-edge difference, exponential kernel matrices, graphons, the discrepancy between two binary networks for each edge (Hamming), a combines the local Hamming distance and the global Ipsen-Mikhailov distance, and the log of graph moments.
 
+- `r pkg("netseg")` implements a collection of descriptive measures of network segregation and homophily such as Freeman Index, Coleman Index, Spectral Segregation Index and more.
+
+
 ### Visualization
 
 #### Interactive visualization
