@@ -463,7 +463,7 @@ binary. It generalizes the original approach to more than two layers.
 - `r pkg("StochBlock")` implements the stochastic blockmodeling of one-mode and
 linked networks. It includes utilities to plot the results
 but cannot choose automatically the 'right' number of clusters and tends to be
-very slow according to subsequent reviews (see Cugmas and Žiberna 2023).
+very slow according to [subsequent reviews](https://doi.org/10.1016/j.socnet.2022.12.003).
 
 - `r pkg("GREMLINS")` implements the SBM of generalized multipartite networks
 where the different matrices each involve nodes that can be partitioned into 
@@ -856,10 +856,6 @@ analysis of multi-layer social networks
 - Bojanowski, Michalm and Lorien Jasny. `statnet` tutorial. *Introduction to Network Analysis Tools in R*. <https://statnet.org/workshop-intro-sna-tools/>
 
 - Csárdi, Gábor, and Tamás Nepus. 2006. `igraph` introduction. *`igraph` Reference Manual*. <https://igraph.org/c/doc/igraph-Introduction.html>
-
-- Cugmas, Marjan, and Aleš Žiberna. 2023. "Approaches to Blockmodeling Dynamic
-Networks: A Monte Carlo Simulation Study". _Social Networks_ 73 (May): 7-19.
-`r doi("10.1016/j.socnet.2022.12.003")`
 
 - Kanevsky, Gregory. 2016. "R Graph Objects: igraph vs. network. _R Bloggers_.
 January 30, 2016.
