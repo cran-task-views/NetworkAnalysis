@@ -3,7 +3,7 @@ name: NetworkAnalysis
 topic: Network Analysis
 maintainer: Fabio Ashtar Telarico, Pavel N. Krivitsky, James Hollway
 email: Fabio-Ashtar.Telarico@fdv.uni-lj.si
-version: 2024-12-30
+version: 2025-03-19
 source: https://github.com/cran-task-views/NetworkAnalysis/
 ---
 
@@ -63,7 +63,7 @@ the GitHub repository or contact the maintainer.
    * [Visualization](#visualization)
       + [Interactive visualization](#interactive-visualization)
       + [Static visualization](#static-visualization)
-      + [Extensions for `ggplot2`](#extensions-for-ggplot2)
+      + [Extensions for ggplot2](#extensions-for-ggplot2)
       + [Layouts](#layouts)
    * [Centrality](#centrality)
 - [Group detection](#group-detection)
