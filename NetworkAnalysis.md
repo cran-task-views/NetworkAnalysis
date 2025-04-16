@@ -559,6 +559,10 @@ of groups, such as sports teams, animal herds, or political
 coalitions, through group formation processes based on individual
 attributes, relations between individuals, and size-related factors.
 
+- `r pkg("networkscaleup")` implements methods for estimating, among other things, degree and sizes of hidden populations based on Aggregated Relational Data (ARD) -- number of people known in a set of sub-populations. The methods include "classical" MLE estimators as well as more recent Bayesian models.
+
+
+
 ### Multimodal and multilevel networks
 
 - `r pkg("migraph")` is an `r pkg("igraph")` extension to analyze multimodal
