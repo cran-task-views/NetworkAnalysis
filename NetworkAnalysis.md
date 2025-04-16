@@ -861,7 +861,7 @@ analysis of multi-layer social networks
 
 ## References
 
-- Bojanowski, Michalm and Lorien Jasny. `statnet` tutorial. *Introduction to Network Analysis Tools in R*. <https://statnet.org/workshop-intro-sna-tools/>
+- Bojanowski, Michal and Lorien Jasny. `statnet` tutorial. *Introduction to Network Analysis Tools in R*. <https://statnet.org/workshop-intro-sna-tools/>
 
 - Csárdi, Gábor, and Tamás Nepus. 2006. `igraph` introduction. *`igraph` Reference Manual*. <https://igraph.org/c/doc/igraph-Introduction.html>
 
