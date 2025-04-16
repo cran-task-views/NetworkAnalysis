@@ -523,6 +523,7 @@ several specialized extensions are available.
   | Modeling ERGM-generating processes                          | `r pkg("ergmgp")`                        |
   | Samples of small networks                                   | `r pkg("ergmito")`                       |
   | Large hierarchical ERGMs                                    | `r pkg("bigergm")`                       |
+  | Bayesian methods for ERGMs                                  | `r pkg("Bergm")`                         |
   | Template for implementing custom network effects (non-CRAN) | `r github("statnet/ergm.userterms")`     |
   | User-contributed network effects (non-CRAN)                 | `r github("statnet/ergm.terms.contrib")` |
 
