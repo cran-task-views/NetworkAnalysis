@@ -246,6 +246,9 @@ Moving to Exploratory Data Analysis (EDA), `r pkg ("igraph")`, `r pkg ("sna")`, 
 
 - Reletadly to EDA, `r pkg("NetworkDistance")` offers many measures to compute the distance between two networks based on centrality, continuous spectral densities, the Euclidean distance between the adjacency matrices' spectra, the Frobenius norm of edge-to-edge difference, exponential kernel matrices, graphons, the discrepancy between two binary networks for each edge (Hamming), a combines the local Hamming distance and the global Ipsen-Mikhailov distance, and the log of graph moments.
 
+- `r pkg("netseg")` implements a collection of descriptive measures of network segregation and homophily such as Freeman Index, Coleman Index, Spectral Segregation Index and more.
+
+
 ### Visualization
 
 #### Interactive visualization
@@ -556,6 +559,10 @@ of groups, such as sports teams, animal herds, or political
 coalitions, through group formation processes based on individual
 attributes, relations between individuals, and size-related factors.
 
+- `r pkg("networkscaleup")` implements methods for estimating, among other things, degree and sizes of hidden populations based on Aggregated Relational Data (ARD) -- number of people known in a set of sub-populations. The methods include "classical" MLE estimators as well as more recent Bayesian models.
+
+
+
 ### Multimodal and multilevel networks
 
 - `r pkg("migraph")` is an `r pkg("igraph")` extension to analyze multimodal
@@ -854,7 +861,7 @@ analysis of multi-layer social networks
 
 ## References
 
-- Bojanowski, Michalm and Lorien Jasny. `statnet` tutorial. *Introduction to Network Analysis Tools in R*. <https://statnet.org/workshop-intro-sna-tools/>
+- Bojanowski, Michal and Lorien Jasny. `statnet` tutorial. *Introduction to Network Analysis Tools in R*. <https://statnet.org/workshop-intro-sna-tools/>
 
 - Csárdi, Gábor, and Tamás Nepus. 2006. `igraph` introduction. *`igraph` Reference Manual*. <https://igraph.org/c/doc/igraph-Introduction.html>
 
