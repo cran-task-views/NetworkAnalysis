@@ -295,6 +295,8 @@ flexibility to theme.
 
   - `manynet` includes plotting methods for much of its output, including blockmodels and dendrograms for clustering.
 
+- `r pkg("multigraph")` is a powerful tool providing easier visualizations of multigraphs, valued/signed networks, bipartite networks, multilevel networks, and Cayley graphs with various layout options.
+
 #### Extensions for `ggplot2`
 
 - `r pkg("ggnetwork")` offers geometries to plot `r pkg("network")` objects.
@@ -316,10 +318,6 @@ hand-drawn-like networks
 
 - `r pkg("ggdendro")` makes it easy to make ggplots of dendrograms create using
 the functions `tree`, `hclust`, `dendrogram`, and `rpart`.
-
-- `r pkg("multigraph")` is a powerful tool providing easier visualizations of
-multigraphs, valued/signed networks, bipartite networks, multilevel networks,
-and Cayley graphs with various layout options.
 
 #### Layouts
 
