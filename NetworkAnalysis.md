@@ -3,7 +3,7 @@ name: NetworkAnalysis
 topic: Network Analysis
 maintainer: Fabio Ashtar Telarico, Pavel N. Krivitsky, James Hollway
 email: Fabio-Ashtar.Telarico@fdv.uni-lj.si
-version: 2025-04-16
+version: 2025-05-26
 source: https://github.com/cran-task-views/NetworkAnalysis/
 ---
 
