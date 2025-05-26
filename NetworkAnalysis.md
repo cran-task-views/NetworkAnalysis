@@ -295,7 +295,7 @@ flexibility to theme.
 
   - `manynet` includes plotting methods for much of its output, including blockmodels and dendrograms for clustering.
 
-- `r pkg("multigraph")` is a powerful tool providing easier visualizations of multigraphs, valued/signed networks, bipartite networks, multilevel networks, and Cayley graphs with various layout options.
+- `r pkg("multigraph")` is a powerful tool providing easier visualizations of multigraphs, various types of networks (multilevel/multiples, temporal, spatial, bipartite, valued, signed), and Cayley graphs with various layout options.
 
 #### Extensions for `ggplot2`
 
@@ -449,8 +449,7 @@ to plot the resulting partition.
 - `r pkg ("greed")` leverages a combination of greedy local search and a genetic
 algorithm to execute (degree-corrected) SBM and LBM.
 
-- `r pkg("dynsbm")`, archived from the CRAN repository on 2023-10-27 due to a
-faulty dependence, implements the model for temporal networks which combines a static
+- `r pkg("dynsbm")`, implements the model for temporal networks which combines a static
 SBM with independent Markov chains for the dynamic part. It supports binary and
 weighted networks with both discrete and continuous edges. Includes also
 functions for plotting (`dynsbm::adjacency.plot`, `dynsbm::alluvial.plot`,
