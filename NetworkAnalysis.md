@@ -592,9 +592,9 @@ over time and network processes that occur over time.
 
 #### Relational events
 
-Relational event data contains information about exact times during which the
-nodes interact. This is commonly observed for e-mail, radio, and other
-communications.
+Relational event models (REMs) are used to describe data containing information about the
+exact times during which the nodes interact. This is commonly observed for e-mail, radio, and
+other communications.
 
 - `r pkg("rem")` and `r pkg("relevent")` both contain functions to fit and
 simulate dyad-oriented relational event models. But only `r pkg("relevent")` can
@@ -602,6 +602,12 @@ estimate event sequence data without time stamps.
 
 - `r pkg("goldfish")` offers functions to fit and simulate actor-oriented
 dynamic network actor models and dyad-oriented relational event models.
+
+- `r pkg("dream")` provides scalable tools for analysing large REMs.  It enables efficient risk-set
+formation (incl. via case-control sampling) using the function `dream::processTMEventSeq` as well as the 
+computation of a wide range of REM-specific descriptive statistics (e.g. `dream::computeReciprocity`, 
+`dream::computeTriads`, etc.). In addition, it allows the estimation or simulation of relational event sequences 
+and implements recently proposed brokerage and structural hole measures in one- and two-mode networks.
 
 #### Discrete observations
 
