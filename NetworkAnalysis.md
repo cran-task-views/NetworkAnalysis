@@ -3,7 +3,7 @@ name: NetworkAnalysis
 topic: Network Analysis
 maintainer: Fabio Ashtar Telarico, Pavel N. Krivitsky, James Hollway
 email: Fabio-Ashtar.Telarico@fdv.uni-lj.si
-version: 2025-05-26
+version: 2025-09-14
 source: https://github.com/cran-task-views/NetworkAnalysis/
 ---
 
@@ -146,39 +146,17 @@ create, import/export, edit, and otherwise operate on relational data.
     with social network analysis (SNA). But the trade-off, of course, is that
     the number of possibilities makes life harder for new users.
 
-- `r pkg("manynet", priority = "core")` is built upon many of the other network
-  packages in this list and offers interoperability with many different classes
-  of objects as well as network visualization and analytic tools.
+- [Stocnet](http://stocnet.org/) is an open software system for the advanced statistical analysis of social networks. 
+Its history reaches back to 1998, but was reestablished in 2024 to support the continued
+development to consistent standards of a set of packages that span the network analysis pipeline,
+from creating and modifying many different types of networks to their analysis and inference:
 
-  - *Approach*: Inspired by the [_tidyverse_](https://www.tidyverse.org/),
-    `manynet` offers a piped syntax, with even more structure, consistency, and
-    sensible defaults. For example, `manynet::net_*` functions always return a
-    single value (scalar), and `manynet::node_*` and `manynet::tie_*` always
-    return a vector the length of the nodes or ties in the network,
-    respectively. Similarly, `manynet::is_*` functions always return logical
-    values (`TRUE`/`FALSE`), for example. This helps new users and those working
-    with multiple packages alike.
- 
-  - *Flexibility*: the package leverages S3 dispatching so that all the
-    functions work with many _classes_ of network objects, such as `r pkg
-    ("network")` or `r bioc("graph")` objects, but also edge lists, matrices, and
-    various other more specific classes.  Its coercion routines retain more
-    information than the long-standing alternative `r pkg ("intergraph")`, being
-    able to transform between more classes and receiving more frequent updates. 
-    It also includes more complete import and export routines than generalist
-    packages.
- 
-  - *Comprehensiveness*: the package wraps most of `r pkg("igraph")`'s offerings
-    but extends or corrects them to treat many _types_ of networks, including
-    two-mode, multiplex, and dynamic networks. The package also implements a
-    number of functions for network analysis that are not available elsewhere.
-
-  - *Documentation*: The package benefits from clear and concise documentation,
-    making it accessible to users of all levels. Additionally, it offers
-    straightforward tutorials and examples to help users get started with
-    network analysis in R.  Further explanation, examples, and references are
-    continually being to the documentation to provide user reference and support
-    user experience.
+  - `r pkg("manynet", priority = "core")`
+  - `r pkg("autograph")`
+  - `r pkg("migraph")`
+  - `r pkg("goldfish")`
+  - `r pkg("RSiena")`
+  - `r pkg("MoNAn")`
 
 ### Relational data management and conversion tools
 
@@ -187,9 +165,22 @@ of networks from different types of inputs, there are also specialized packages
 for constructing more specialized formats or for converting or coercing between
 different formats.
 
-- Core packages `r pkg("network")` and `r pkg("igraph")` provide basic
-  data structures and tools for creating, importing, modifying, and
+- `r pkg("network", priority = "core")` and `r pkg("igraph", priority = "core")` 
+provide basic data structures and tools for creating, importing, modifying, and
   exporting their respective representations of relational data.
+  
+- `r pkg("manynet", priority = "core")` is built upon other network
+  packages in this list and offers interoperability with many different classes
+  of objects as well as network analytic tools. Its coercion routines retain more
+    information than the long-standing alternative `r pkg ("intergraph")`, being
+    able to transform between more classes and receiving more frequent updates. 
+    It also includes more complete import and export routines than generalist packages. 
+    It offers a piped and explicit syntax, which helps new users and those working
+    with multiple packages alike.
+    The package also offers straightforward tutorials and examples to help users 
+    get started with network analysis in R. 
+    Further explanation, examples, and references are continually being to the 
+    documentation to provide user reference and support user experience.
 
 - `r pkg("intergraph")` is not a network analysis package _per se_. Rather it
 allows to easily convert objects produced by Statnet packages into
@@ -240,6 +231,32 @@ Moving to Exploratory Data Analysis (EDA), `r pkg ("igraph")`, `r pkg ("sna")`, 
 
 ### General
 
+- `r pkg("manynet", priority = "core")` offers functions for returning _marks_ (logical scalars or vectors),
+_measures_ (numeric scalars or vectors), and _memberships_ (string scalars or vectors)
+at the network, node, or tie level. For example, `manynet::net_*` functions always return a
+    single value (scalar), and `manynet::node_*` and `manynet::tie_*` always
+    return a vector the length of the nodes or ties in the network,
+    respectively:
+
+  - network marks including whether the network is Eulerian or aperiodic
+  - node marks including whether the node is part of the core, or at a structural fold
+  - tie marks including whether the tie is a bridge, or part of a Simmelian, forbidden, or imbalanced triad
+  - network measures including measures of topology, graph theoretic dimensions of hierarchy, measures of network diversity and resilience
+  - node measures including 7 measures of structural holes and 24 measures of centrality
+  - tie measures including tie eigenvector or cohesion
+  - node memberships including in communities, brokerage roles, or structural/regular/automorphic equivalence
+
+  `r pkg("manynet", priority = "core")` leverages S3 dispatching so that all the
+    functions work with many _classes_ of network objects, such as `r pkg
+    ("network")` or `r bioc("graph")` objects, but also edge lists, matrices, and
+    various other more specific classes.  
+ 
+   `r pkg("manynet", priority = "core")` wraps many igraph functions
+    but extends or corrects them to treat many _types_ of networks, including
+    two-mode, multiplex, signed, and dynamic networks. 
+    The package also implements various functions for network analysis unavailable elsewhere.
+
+
 - `r pkg("tsna")` implements a number of methods for exploratory
   analysis and summaries of temporal networks in the `r pkg("networkDynamic")`
   representation.
@@ -250,6 +267,61 @@ Moving to Exploratory Data Analysis (EDA), `r pkg ("igraph")`, `r pkg ("sna")`, 
 
 
 ### Visualization
+
+#### Static visualization
+
+- `r pkg("diagram")` was born as a companion to the book _A Practical Guide to
+Ecological Modelling_ by K. Soetaert and P.M.J. Herman. But it can visualize as
+a flow diagram, a web or grid any network given in the form of a transition
+matrix. 
+
+- `r pkg("neatmaps")` tries to simplify the exploratory step of data analysis by
+providing function to easily produce hierarchical clustering
+(`neatmaps::hierarchy`), consensus clustering (`neatmaps::consClustResTable`)
+and heatmaps of multiple networks (`neatmaps::neatmap`).
+
+- `r pkg("autograph")` builds on `r pkg("ggraph")` for drawing graphs and plots
+of network objects with sensible defaults and consistent theming in a range of
+institutional styles. 
+
+  - `autograph::graphr` is for quick, easy network visualization.
+
+  - `autograph::graphs` is for comparing ego networks or subgraphs side by side.
+
+  - `autograph::grapht` is for developing dynamic or longitudinal networks into GIFs.
+
+  - The package includes plotting methods for output from a range of Stocnet packages, 
+including blockmodels and dendrograms for clustering, but also diagnostics and goodness-of-fit
+for `r pkg("RSiena")`, `r pkg("MoNAn")`, and `r pkg("migraph")`.
+
+- `r pkg("multigraph")` is a powerful tool providing easier visualizations of multigraphs,
+various types of networks (multilevel/multiples, temporal, spatial, bipartite, valued, signed),
+and Cayley graphs with various layout options.
+
+- `r pkg("ggnetwork")` offers geometries to plot `r pkg("network")` objects.
+
+- `r pkg("ggraph")` allows to plot `r pkg("igraph")` objects by building up
+plots layer by layer.
+
+- `r pkg("ggsom")` offers functions to plot self-organizing maps (SOMs). 
+
+- `r pkg("roughnet")` leverages the _rough.js_ library to draw sketchy,
+hand-drawn-like networks
+
+#### Layouts
+
+- `r pkg("graphlayouts")` adds several layout algorithms to `r pkg("igraph")`
+and `r pkg("ggraph")` based on the concept of stress majorization (See also
+`r pkg("edgebundle")`).
+
+- `r pkg("autograph")` includes a few more layout algorithms for multimodal
+networks.
+
+- `r bioc("Rgraphviz")`, available on Bioconductor, creates a direct link
+between the `r bioc("graph")` package and the _graphviz_ library. 
+
+- `r pkg("ggdendro")` makes it easy to make ggplots of dendrograms create using
+the functions `tree`, `hclust`, `dendrogram`, and `rpart`.
 
 #### Interactive visualization
 
@@ -264,80 +336,15 @@ network visualizations, making it suitable for un-experienced users.
 - `r pkg("networkD3")` provides functions that turns edge lists into a _D3_
 JavaScript network, tree, dendrogram, or Sankey plots.
 
+- `r pkg("snahelper")` is an add-on allowing access to a GUI for visualizing and
+analyzing networks. Once the visualization is set, the relevant code is
+automatically added to the script. 
+
 - `r pkg("bipartiteD3")` uses the _D3_ and _viz.js_ libraries for plotting
 networks produced with the `r pkg("bipartite")` package.
 
 - `r pkg("ndtv")` renders network objects from the package
 `r pkg("networkDynamic")` as videos or interactive animations.
-
-#### Static visualization
-
-- `r pkg("diagram")` was born as a companion to the book _A Practical Guide to
-Ecological Modelling_ by K. Soetaert and P.M.J. Herman. But it can visualize as
-a flow diagram, a web or grid any network given in the form of a transition
-matrix. 
-
-- `r pkg("neatmaps")` tries to simplify the exploratory step of data analysis by
-providing function to easily produce hierarchical clustering
-(`neatmaps::hierarchy`), consensus clustering (`neatmaps::consClustResTable`)
-and heatmaps of multiple networks (`neatmaps::neatmap`).
-
-- `r pkg("manynet")` builds on `r pkg("ggraph")` for graphing networks in
-`ggplot2`-style but eases the complicated syntax and offers sensible defaults to
-make it easy to visualize and explore network data while retaining the
-flexibility to theme. 
-
-  - `manynet::graphr` is for quick, easy network visualization.
-
-  - `manynet::graphs` is for comparing ego networks or subgraphs side by side.
-
-  - `manynet::grapht` is for developing dynamic or longitudinal networks into GIFs.
-
-  - `manynet` includes plotting methods for much of its output, including blockmodels and dendrograms for clustering.
-
-- `r pkg("multigraph")` is a powerful tool providing easier visualizations of multigraphs, various types of networks (multilevel/multiples, temporal, spatial, bipartite, valued, signed), and Cayley graphs with various layout options.
-
-#### Extensions for `ggplot2`
-
-- `r pkg("ggnetwork")` offers geometries to plot `r pkg("network")` objects.
-
-- `r pkg("ggraph")` allows to plot `r pkg("igraph")` objects by building up
-plots layer by layer.
-
-- `r pkg("ggsom")` offers functions to plot self-organizing maps (SOMs). 
-
-- `r pkg("snahelper")` is an add-on allowing access to a GUI for visualizing and
-analyzing networks. Once the visualization is set, the relevant code is
-automatically added to the script. 
-
-- `r pkg("roughnet")` leverages the _rough.js_ library to draw sketchy,
-hand-drawn-like networks
-
-- `r pkg("gganimate")` allows to produce GIFs and MP4s version of evolving
-`ggplots`, including those representing networks. 
-
-- `r pkg("ggdendro")` makes it easy to make ggplots of dendrograms create using
-the functions `tree`, `hclust`, `dendrogram`, and `rpart`.
-
-#### Layouts
-
-- `r pkg("ggforce")` offers functions for specialized plots, some of which also
-find application in network analysis. Most importantly, alluvial plots can be
-used to visualize composition of groups in a dynamic network. 
-
-- `r pkg("graphlayouts")` adds several layout algorithms to `r pkg("igraph")`
-and `r pkg("ggraph")` based on the concept of stress majorization (See also
-`r pkg("edgebundle")`).
-
-- `r pkg("manynet")` includes a few more layout algorithms for multimodal
-networks.
-
-- `r bioc("Rgraphviz")`, available on Bioconductor, creates a direct link
-between the `r bioc("graph")` package and the _graphviz_ library. 
-
-- `r pkg("patchwork")` allows for arbitrarily complex composition of plots that
-can be used, for example, in visualizing multipartite and other complex
-networks.
 
 ### Centrality
 
@@ -361,7 +368,8 @@ adjacency matrices (either in the built-in `matrix` class or in `Matrix`'s
 _neighborhood-inclusion_ or _positional dominance_ and based on probabilistic
 methods like computing expected node ranks and relative rank probabilities.
 
-- `r pkg("influential")` provides a collection of tools designed to help users work with networks and understand their structure and properties including analyzing network topology and calculating several centrality measures. In addition, it provides unsupervised centrality ranking based on influence through a Susceptible–Infected–Recovered model with leave-one-out cross validation (a machine learning technique). Another interesting advanced function is the ability to compute dependence and correlation between pairs of centrality measures.
+- `r pkg("influential")` provides a collection of tools designed to help users work with networks and understand their structure and properties including analyzing network topology and calculating several centrality measures.
+In addition, it provides unsupervised centrality ranking based on influence through a Susceptible–Infected–Recovered model with leave-one-out cross validation (a machine learning technique). Another interesting advanced function is the ability to compute dependence and correlation between pairs of centrality measures.
 
 - `r pkg("CINNA")` is a toolkit designed to help researchers analyze networks and identify the most "central" nodes. Notably, CINNA supports bipartite networks, where nodes are divided into two groups. The package includes some centrality measures not available in other R packages such as Dangalchev centrality (closeness centrality for disconnected networks), group centrality;  local bridging centrality; harmonic centrality; wiener index centrality (i.e., the network's overall efficiency based on distances). It also allows to use t-SNE (t-distributed stochastic neighbor embedding) or PCA (Principal Component Analysis) to help determine which centrality measure is most informative for a given network. Moreover, CINNA provides various ways to visualize centrality: heatmaps (compare nodes across centrality measures), dendrograms (grouping similarly central units), scatterplots (between pairs of centrality measures).
 
