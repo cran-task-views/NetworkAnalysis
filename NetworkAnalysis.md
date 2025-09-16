@@ -387,14 +387,6 @@ simultaneously estimate the community structure and the number of communities in
 an asymptotically consistent way. The method is mainly used in life sciences but
 is applicable across the board.
 
-- `r pkg("linkcomm")` provides functions for generating, visualizing, and
-analyzing overlapping communities in networks of arbitrary size and type. Unlike
-`r pkg("igraph")` and `r pkg ("network")`, it can compute relatedness
-`linkcomm::getClusterRelatedness` and `linkcomm::getCommunityConnectedness` as
-well as generate a mesoscopic matrix (`linkcomm::getCommunityMatrix`). Moreover,
-it can produce membership for hierarchical communities
-(`linkcomm::getNestedHierarchies`).
-
 ### Blockmodeling
 
 #### Generalized (structural and/or regular equivalence)
