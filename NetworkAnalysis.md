@@ -188,6 +188,11 @@ allows to easily convert objects produced by Statnet packages into
 leveraging multiple packages' functionalities and ensuring compatibility between
 several users' workflows too many additional functionalities.
 
+- Similarly, `r pkg("netUtils")` supplies a collection of helper functions for
+working with network objects including the extraction of sub‑graphs, computing
+basic statistics, converting between common network classes (not least
+from/to igraph and the statnet suite).
+
 - `r pkg("BoolNet")` provides tools for assembling, analyzing and visualizing
 synchronous and asynchronous (probabilistic) Boolean networks as well as simpler
 Boolean networks. All the main functions are described in a handy
@@ -315,7 +320,7 @@ and `r pkg("ggraph")` based on the concept of stress majorization (See also
 `r pkg("edgebundle")`).
 
 - `r pkg("autograph")` includes a few more layout algorithms for multimodal
-networks.
+networks as well as sensible defaults for the automatic plotting of many graph objects.
 
 - `r bioc("Rgraphviz")`, available on Bioconductor, creates a direct link
 between the `r bioc("graph")` package and the _graphviz_ library. 
@@ -345,6 +350,11 @@ networks produced with the `r pkg("bipartite")` package.
 
 - `r pkg("ndtv")` renders network objects from the package
 `r pkg("networkDynamic")` as videos or interactive animations.
+
+- `r pkg("g6R")` provides an wrapper for the _G6.js_ graph visualisation engine, letting
+the user build interactive network visualisations with dozens of layouts,
+animations, and user‑interaction behaviours. In includes several plugins and the graphs
+are easily embedded in Shiny apps.
 
 ### Centrality
 
