@@ -467,10 +467,6 @@ functions for plotting (`dynsbm::adjacency.plot`, `dynsbm::alluvial.plot`,
 `dynsbm::connectivity.plot`) the partition and automatically constructs matrices
 as an array of the right format.
 
-- `r pkg("MLVSBM")` Implements the SBM of multilevel networks where the
-different matrices each represent an interaction layer either weighter or
-binary. It generalizes the original approach to more than two layers.
-
 - `r pkg("StochBlock")` implements the stochastic blockmodeling of one-mode and
 linked networks. It includes utilities to plot the results
 but cannot choose automatically the 'right' number of clusters and tends to be
