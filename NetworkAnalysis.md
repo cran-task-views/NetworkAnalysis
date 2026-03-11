@@ -673,13 +673,6 @@ particular packages.
 models of ecological networks (mainly food webs and host-parasite relations, but
 also plant-pollinator and other mutualistic ones) statically and dynamically. 
 
-<!-- - `r pkg("AnimalHabitatNetwork")` provides functions for generating and
-visualizing networks representing the physical configurations of animal
-habitats. It implements an original network-generating algorithm based on
-pair-wise Euclidean distances and can output undirected network either weighted
-or binary, fully connected or sparse). The package is associated with a PDF on
-modelling the physical configurations of animal habitats using networks. -->
-
 - `r pkg("aniSNA")` allows to obtain network structures from animal GPS
 telemetry observations and statistically analyze them to assess their adequacy
 for social network analysis. Methods include pre-network data permutations,
