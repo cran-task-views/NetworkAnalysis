@@ -684,10 +684,6 @@ particular packages.
 
 ### Ecological networks
 
-- `r pkg("econetwork")` is a collection of advanced functions to analyze and
-models of ecological networks (mainly food webs and host-parasite relations, but
-also plant-pollinator and other mutualistic ones) statically and dynamically. 
-
 - `r pkg("aniSNA")` allows to obtain network structures from animal GPS
 telemetry observations and statistically analyze them to assess their adequacy
 for social network analysis. Methods include pre-network data permutations,
