@@ -612,8 +612,6 @@ Relational event models (REMs) are used to describe data containing information 
 exact times during which the nodes interact. This is commonly observed for e-mail, radio, and
 other communications.
 
-<!-- - `r pkg("rem")` and `r pkg("relevent")` both contain functions to fit and simulate dyad-oriented relational event models. But only `r pkg("relevent")` can estimate event sequence data without time stamps.-->
-
 - `r pkg("relevent")` contains functions to fit and simulate dyad-oriented relational event models and can also estimate event sequence data without time stamps.
 
 - `r pkg("goldfish")` offers functions to fit and simulate actor-oriented
