@@ -612,16 +612,14 @@ Relational event models (REMs) are used to describe data containing information 
 exact times during which the nodes interact. This is commonly observed for e-mail, radio, and
 other communications.
 
-- `r pkg("relevent")` contains functions to fit and simulate dyad-oriented relational event models and can also estimate event sequence data without time stamps.
+- `r pkg("relevent")` contains functions to fit and simulate dyad-oriented REMs and can also estimate event sequence data without time stamps.
 
 - `r pkg("goldfish")` offers functions to fit and simulate actor-oriented
-dynamic network actor models and dyad-oriented relational event models.
+dynamic network actor models and dyad-oriented REMs.
 
-- `r pkg("dream")` provides scalable tools for analysing large REMs.  It enables efficient risk-set
-formation (incl. via case-control sampling) using the function `dream::processTMEventSeq` as well as the 
-computation of a wide range of REM-specific descriptive statistics (e.g. `dream::computeReciprocity`, 
-`dream::computeTriads`, etc.). In addition, it allows the estimation or simulation of relational event sequences 
-and implements recently proposed brokerage and structural hole measures in one- and two-mode networks.
+- `r pkg("dream")` provides scalable tools for analysing large REMs.  It enables efficient risk-set formation (incl. via case-control sampling) using the function `dream::processTMEventSeq` as well as the computation of a wide range of REM-specific descriptive statistics (e.g. `dream::computeReciprocity`, `dream::computeTriads`, etc.). In addition, it allows the estimation or simulation of relational event sequences and implements recently proposed brokerage and structural hole measures in one- and two-mode networks.
+
+- "r pkg("remverse")" provides an integrated workflow for tie- and actor-oriented REMs, combining "r pkg("remify")" for processing event histories, "r pkg("remstats")" for computing endogenous and exogenous statistics, and "r pkg("remstimate")" for frequentist and Bayesian estimation, diagnostics, and goodness-of-fit assessment. The framework also supports duration, frailty, moving-window, regularized, and latent-class REMs.
 
 #### Discrete observations
 
